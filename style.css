@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(140, 140, 140);
+    font-family: arial;
+    overflow: hidden;
+}
+
+#output {
+    width: 56vw;
+    height: 94vh;
+    float: left;
+    margin: 1vh;
+    /* background-color: rgb(220, 220, 220); */
+}
+
+#workspace {
+    width: 36vw;
+    height: 92vh;
+    float: left;
+    padding: 1vh;
+    margin: 1vh;
+    overflow-y: auto;
+    text-align: center;
+    background-color: rgb(220, 220, 220);
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+}
+
+canvas {
+    margin: auto;
+    background-color: pink;
+}
+
+#title {
+    width: 90%;
+    background-color:
+}
