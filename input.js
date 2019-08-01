@@ -1,4 +1,5 @@
 var Mouse = {
+    "zoom": 0,
     "dx": 0,
     "dy": 0,
     "x": 0,
@@ -45,6 +46,15 @@ function mousemove(e) {
     Mouse.y += e.movementY;
 }
 
+// Detect pinch to zoom gestures on the trackpad.
+function onwheel(e) {
+    e.preventDefault();
+
+    if (e.ctrlKey) {
+        Mouse.zoom = e.deltaY;
+    }
+};
+
 // Lock the user's mouse so that it doesn't hit the edge of the screen.
 var canvas = document.getElementById("canvas");
 var havePointerLock = "pointerLockElement" in document || "mozPointerLockElement" in document || "webkitPointerLockElement" in document;
@@ -55,6 +65,7 @@ if (havePointerLock) {
         if (!(canvas === document.pointerLockElement || canvas === document.mozPointerLockElement || canvas === document.webkitPointerLockElement)) {
             canvas.requestPointerLock();
             document.addEventListener("mousemove", mousemove, false);
+            document.addEventListener("wheel", onwheel, {passive: false});
             realtime.init();
         } else {
             // document.exitPointerLock();
@@ -63,6 +74,7 @@ if (havePointerLock) {
     document.addEventListener("pointerlockchange", function() {
         if (!(canvas === document.pointerLockElement || canvas === document.mozPointerLockElement || canvas === document.webkitPointerLockElement)) {
             document.removeEventListener("mousemove", mousemove, false);
+            document.removeEventListener("wheel", onwheel, {passive: false});
             realtime.active = false;
         }
     }, false);
