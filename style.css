@@ -5,7 +5,7 @@ body {
 }
 
 #output {
-    width: 56vw;
+    width: 52vw;
     height: 94vh;
     float: left;
     margin: 1vh;
@@ -13,26 +13,96 @@ body {
 }
 
 #workspace {
-    width: 36vw;
+    width: 40vw;
     height: 92vh;
     float: left;
     padding: 1vh;
     margin: 1vh;
-    overflow-y: auto;
     text-align: center;
     background-color: rgb(220, 220, 220);
+}
+
+canvas {
+    margin: auto;
+    background-color: rgb(255, 255, 255);
 }
 
 ::-webkit-scrollbar {
     width: 0px;  /* Remove scrollbar space */
 }
 
-canvas {
-    margin: auto;
-    background-color: pink;
-}
-
 #title {
     width: 90%;
-    background-color:
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#objs {
+    margin: auto;
+    width: 95%;
+    height: 80%;
+    overflow-y: auto;
+    background-color: rgb(210, 210, 210);
+}
+
+.obj {
+    margin-top: 4%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 20%;
+    background-color: rgb(170, 170, 170);
+}
+
+.obj-header {
+    overflow: hidden;
+    height: 24%;
+    padding: 2%;
+    font-size: 1em;
+}
+
+.obj-header ul {
+    margin-top: 2%;
+}
+
+.obj-title {
+    float: left;
+    list-style: none;
+}
+
+.obj-delete {
+    float: right;
+    margin-right: 10%;
+    list-style: none;
+    width: 15%;
+}
+
+.obj-delete button {
+    width: 100%;
+    height: 100%;
+}
+
+.obj-body {
+    padding: 2%;
+    height: 66%;
+    font-size: 1em;
+}
+
+.obj-body ul {
+    margin-top: 2%;
+}
+
+.obj-body li {
+    list-style: none;
+    float: left;
+    text-align: left;
+    width: 100%;
+}
+
+.function {
+    margin-left: 0;
+}
+
+.function input {
+    width: 75%;
 }

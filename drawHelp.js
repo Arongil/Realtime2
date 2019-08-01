@@ -83,3 +83,8 @@ function text(str, x, y, alignment) {
 function millis() {
   return Date.now() - start;
 }
+
+var colors = {
+    "BLUE_D": "#11ACCD",
+    "MAROON_D": "#CA337C"
+}

@@ -44,3 +44,26 @@ function mousemove(e) {
     Mouse.x += e.movementX;
     Mouse.y += e.movementY;
 }
+
+// Lock the user's mouse so that it doesn't hit the edge of the screen.
+var canvas = document.getElementById("canvas");
+var havePointerLock = "pointerLockElement" in document || "mozPointerLockElement" in document || "webkitPointerLockElement" in document;
+if (havePointerLock) {
+    canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+    canvas.exitPointerLock = canvas.exitPointerLock || canvas.mozExitPointerLock || canvas.webkitExitPointerLock;
+    canvas.addEventListener("click", function() {
+        if (!(canvas === document.pointerLockElement || canvas === document.mozPointerLockElement || canvas === document.webkitPointerLockElement)) {
+            canvas.requestPointerLock();
+            document.addEventListener("mousemove", mousemove, false);
+            realtime.init();
+        } else {
+            // document.exitPointerLock();
+        }
+    }, false);
+    document.addEventListener("pointerlockchange", function() {
+        if (!(canvas === document.pointerLockElement || canvas === document.mozPointerLockElement || canvas === document.webkitPointerLockElement)) {
+            document.removeEventListener("mousemove", mousemove, false);
+            realtime.active = false;
+        }
+    }, false);
+}

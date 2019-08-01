@@ -1,7 +1,7 @@
 var canvas, ctx;
 var WIDTH, HEIGHT, HALFWIDTH, HALFHEIGHT;
 
-var realtime;
+var realtime, workspace;
 
 var start;
 
@@ -44,7 +44,9 @@ function init() {
 
   start = Date.now();
 
-  // realtime = new Realtime();
+  realtime = new Realtime();
+  workspace = new Workspace();
+  realtime.init();
 
   window.requestAnimationFrame(loop);
 }
@@ -52,7 +54,7 @@ function init() {
 function loop() {
   ctx.save();
 
-  // realtime.update();
+  realtime.update();
 
   ctx.restore();
 
