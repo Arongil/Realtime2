@@ -2,6 +2,7 @@ class Realtime {
 
     constructor() {
         this.range = [[-1, 1], [-1, 1]];
+        this.scrollSpeed = 0.01;
         this.active = false;
     }
 
@@ -24,10 +25,25 @@ class Realtime {
         rect(-WIDTH, -HEIGHT, 4*WIDTH, 4*HEIGHT);
     }
 
-    update() {
-        if (this.active) {
-            this.graph();
+    input() {
+        this.range[0][0] += Mouse.dx * this.scrollSpeed;
+        this.range[0][1] += Mouse.dx * this.scrollSpeed;
+        this.range[1][0] -= Mouse.dy * this.scrollSpeed;
+        this.range[1][1] -= Mouse.dy * this.scrollSpeed;
+        Mouse.dx = 0;
+        Mouse.dy = 0;
+
+        if (Keys.space) {
+            this.range = [[-1, 1], [-1, 1]];
         }
+    }
+
+    update() {
+        if (!this.active) {
+            return;
+        }
+        this.input();
+        this.graph();
     }
 
 }
