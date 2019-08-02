@@ -25,4 +25,10 @@ class Label {
         text(this.text, realtime.transformX(this.position[0]), realtime.transformY(this.position[1]));
     }
 
+    generateCode() {
+        return `label([` + this.position[0] + `, ` + this.position[1] + `], "` + this.text + `", "center", ` + (this.latex ? "true" : "false") + `, {
+    color: "` + this.color + `"
+});`;
+    }
+
 }

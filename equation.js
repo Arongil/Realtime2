@@ -42,4 +42,15 @@ class Equation {
         }, false);
     }
 
+    generateCode() {
+        return `style({
+    stroke: "` + this.color + `",
+    fill: "none",
+    strokeWidth: 3
+});
+plot(function(x) {
+    return ` + this.fElement.value + `;
+}, X_RANGE);`;
+    }
+
 }

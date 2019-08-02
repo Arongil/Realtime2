@@ -123,6 +123,7 @@ canvas {
 
 #add-button {
     list-style: none;
+    width: 11.5vw;
     float: left;
     text-align: left;
 }
@@ -132,8 +133,21 @@ canvas {
     font-size: 1vw;
 }
 
+#generate-code {
+    list-style: none;
+    width: 14vw;
+    float: left;
+    text-align: center;
+}
+
+#generate-code button {
+    width: 14vw;
+    font-size: 1vw;
+}
+
 #add-select-li {
     list-style: none;
-    float: right;
-    text-align: left;
+    width: 11.5vw;
+    float: left;
+    text-align: right;
 }
