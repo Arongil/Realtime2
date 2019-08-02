@@ -56,7 +56,7 @@ function ellipse(x, y, xRadius, yRadius, s) {
   ctx.fill();
   ctx.stroke();
 }
-function path(points, s) {
+function path(points, s, close = true) {
   style(s);
   ctx.beginPath();
   ctx.moveTo(points[0][0], points[0][1]);
@@ -64,10 +64,15 @@ function path(points, s) {
   for (var i = 0; i < points.length; i++) {
     ctx.lineTo(points[i][0], points[i][1]);
   }
-  ctx.lineTo(points[0][0], points[0][1]);
-  ctx.closePath();
-  ctx.fill();
-  ctx.stroke();
+  if (close) {
+    ctx.lineTo(points[0][0], points[0][1]);
+    ctx.fill();
+    ctx.closePath();
+    ctx.stroke();
+  } else {
+    ctx.stroke();
+    ctx.closePath();
+  }
 }
 function textSize(size) {
   ctx.font = size + "px Arial";

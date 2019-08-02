@@ -5,7 +5,7 @@ class Equation {
         this.f = f;
         this.color = color;
         this.points = new Points();
-        this.steps = 100;
+        this.steps = 400;
         this.invalid = false;
     }
 
@@ -28,18 +28,18 @@ class Equation {
         }
         var x, prevF = this.f(-realtime.range[0][0]);
         var x1, y1, x2, y2;
-        for (var i = 1, x; i <= this.steps; i++) {
-            x = i / this.steps * realtime.xRange + realtime.range[0][0];
-            x1 = (i - 1)/this.steps * WIDTH - HALFWIDTH;
-            x2 = i/this.steps * WIDTH - HALFWIDTH;
-            y1 = realtime.transformY(prevF);
-            y2 = realtime.transformY(this.f(-x));
-            path([[x1, y1], [x2, y2]], {
-                stroke: this.color,
-                strokeWidth: 3
-            });
-            prevF = this.f(-x);
+        var points = [];
+        for (var i = 0, x; i <= this.steps; i++) {
+            x = i / this.steps * realtime.xRange + realtime.range[0][0]
+            points.push([
+                i/this.steps * WIDTH - HALFWIDTH,
+                realtime.transformY(-this.f(-x)) // -f(-x) accounts for how HTML5 canvas handles y-coordinates.
+            ]);
         }
+        path(points, {
+            stroke: this.color,
+            strokeWidth: 3
+        }, false);
     }
 
 }
