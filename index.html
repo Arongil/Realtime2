@@ -9,7 +9,7 @@
         <div id="workspace">
             <h1 id="title">Graphie Realtime</h1>
             <div id="objs">
-                <div class="equation obj">
+                <div class="obj">
                     <div class="obj-header">
                         <ul>
                             <li class="obj-title"><strong>Function</strong></li>
@@ -26,6 +26,36 @@
                         </ul>
                     </div>
                 </div>
+                <div class="obj">
+                    <div class="obj-header">
+                        <ul>
+                            <li class="obj-title"><strong>Label</strong></li>
+                            <li class="obj-delete" onclick="workspace.remove(1);"><button>X</button></li>
+                        </ul>
+                    </div>
+                    <div class="obj-body">
+                        <ul>
+                            <li class="text">text = <input id="text1" value="x_0"></input></li>
+                            <li class="color">color = <select id="color1">
+                                <option value="BLUE_D">BLUE_D</option>
+                                <option value="MAROON_D">MAROON_D</option>
+                            </select></li>
+                            <li class="mathy">mathy = <select id="mathy1">
+                                <option value="yes">yes</option>
+                                <option value="no">no</option>
+                            </select></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="add-objs">
+                <ul>
+                    <li id="add-button" onclick="workspace.add();"><button>+</button></li>
+                    <li id="add-select-li"><select id="type-select">
+                        <option value="function">function</option>
+                        <option value="label">label</option>
+                    </select></li>
+                </ul>
             </div>
         </div>
         <div id="output">
@@ -36,7 +66,6 @@
         <script src="drawHelp.js"></script>
         <script src="input.js"></script>
 
-        <script src="obj.js"></script>
         <script src="label.js"></script>
         <script src="points.js"></script>
         <script src="equation.js"></script>

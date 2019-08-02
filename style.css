@@ -50,7 +50,7 @@ canvas {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    height: 20%;
+    height: 25%;
     background-color: rgb(170, 170, 170);
 }
 
@@ -105,4 +105,35 @@ canvas {
 
 .function input {
     width: 75%;
+}
+
+#add-objs {
+    margin: auto;
+    padding: 2%;
+    width: 95%;
+    height: 8%;
+}
+
+#add-objs ul {
+    margin: 1%;
+    padding: 0;
+    width: 98%;
+    height: 100%;
+}
+
+#add-button {
+    list-style: none;
+    float: left;
+    text-align: left;
+}
+
+#add-button button {
+    width: 5vw;
+    font-size: 1vw;
+}
+
+#add-select-li {
+    list-style: none;
+    float: right;
+    text-align: left;
 }

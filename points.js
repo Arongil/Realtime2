@@ -1,7 +1,6 @@
-class Points extends Obj {
+class Points {
 
     constructor(points = []) {
-        super();
         this.points = points;
     }
 
