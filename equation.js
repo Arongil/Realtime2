@@ -26,14 +26,14 @@ class Equation {
             // If the formula's invalid, wait until it's corrected.
             return;
         }
-        var x, prevF = this.f(-realtime.range[0][0]);
+        var x, prevF = this.f(realtime.range[0][0]);
         var x1, y1, x2, y2;
         var points = [];
         for (var i = 0, x; i <= this.steps; i++) {
             x = i / this.steps * realtime.xRange + realtime.range[0][0]
             points.push([
                 i/this.steps * WIDTH - HALFWIDTH,
-                realtime.transformY(-this.f(-x)) // -f(-x) accounts for how HTML5 canvas handles y-coordinates.
+                realtime.transformY(-this.f(x)) // f(x) accounts for how HTML5 canvas handles y-coordinates.
             ]);
         }
         path(points, {

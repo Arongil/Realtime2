@@ -27,9 +27,19 @@ class Workspace {
         }
     }
 
+    reposition(id) {
+        for (var i = 0; i < this.objs.length; i++) {
+            if (this.objs[i].id === id) {
+                this.objs[i].reposition();
+                return;
+            }
+        }
+    }
+
     generateCode() {
         var graphCode = "";
         for (var i = 0; i < this.objs.length; i++) {
+            this.objs[i].update();
             graphCode += this.objs[i].generateCode();
             if (i < this.objs.length - 1) {
                 graphCode += "\n\n";
@@ -113,7 +123,7 @@ function getObj(type) {
     if (type === "function") {
         return new Equation();
     } else if (type === "label") {
-        return new Label();
+        return new Label(realtime.center);
     }
 }
 
@@ -137,7 +147,28 @@ function createHTML(type, obj) {
             </div>
         `;
     } else if (type === "label") {
-        return new Label();
+        return `
+            <div class="obj-header">
+                <ul>
+                    <li class="obj-title"><strong>Label</strong></li>
+                    <li class="obj-delete" onclick="workspace.remove(` + obj.id + `);"><button>X</button></li>
+                </ul>
+            </div>
+            <div class="obj-body">
+                <ul>
+                    <li class="text">text = <input id="text` + obj.id + `" value="x_0"></input></li>
+                    <li class="color">color = <select id="color` + obj.id + `">
+                        <option value="BLUE_D">BLUE_D</option>
+                        <option value="MAROON_D">MAROON_D</option>
+                    </select></li>
+                    <li class="mathy">mathy = <select id="mathy` + obj.id + `">
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select></li>
+                    <li class="reposition" onclick="workspace.reposition(` + obj.id + `);"><button>Reposition</button></li>
+                </ul>
+            </div>
+        `;
     }
 }
 

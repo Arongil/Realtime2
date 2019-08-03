@@ -5,9 +5,10 @@ class Realtime {
         this.center = [0, 0];
         this.xRange = 1;
         this.yRange = 1;
-        this.scrollSpeed = 0.005;
+        this.scrollSpeed = 0.002;
         this.zoomSpeed = 0.01;
         this.active = false;
+        this.takeInput = true;
     }
 
     transformX(x) {
@@ -26,6 +27,7 @@ class Realtime {
             workspace.objs[i].update();
         }
         this.active = true;
+        this.takeInput = true;
     }
 
     graph() {
@@ -52,12 +54,10 @@ class Realtime {
 
     input() {
         // Scroll / pan
-        var xSpeed = (this.range[0][1] - this.range[0][0])/2,
-            ySpeed= (this.range[1][1] - this.range[1][0])/2;
-        this.range[0][0] += Mouse.dx * this.scrollSpeed * xSpeed;
-        this.range[0][1] += Mouse.dx * this.scrollSpeed * xSpeed;
-        this.range[1][0] -= Mouse.dy * this.scrollSpeed * ySpeed;
-        this.range[1][1] -= Mouse.dy * this.scrollSpeed * ySpeed;
+        this.range[0][0] += Mouse.dx * this.scrollSpeed * this.xRange;
+        this.range[0][1] += Mouse.dx * this.scrollSpeed * this.xRange;
+        this.range[1][0] -= Mouse.dy * this.scrollSpeed * this.yRange;
+        this.range[1][1] -= Mouse.dy * this.scrollSpeed * this.yRange;
         Mouse.dx = 0;
         Mouse.dy = 0;
         // Zoom
@@ -87,7 +87,9 @@ class Realtime {
         if (!this.active) {
             return;
         }
-        this.input();
+        if (this.takeInput) {
+            this.input();
+        }
         this.graph();
     }
 
