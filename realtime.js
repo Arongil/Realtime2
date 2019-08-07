@@ -78,6 +78,10 @@ class Realtime {
         if (Keys.space) {
             this.range = [[-1, 1], [-1, 1]];
         }
+
+        this.center = [(this.range[0][0] + this.range[0][1])/2, (this.range[1][0] + this.range[1][1])/2];
+        this.xRange = this.range[0][1] - this.range[0][0];
+        this.yRange = this.range[1][1] - this.range[1][0];
     }
 
     update() {
