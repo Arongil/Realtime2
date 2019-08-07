@@ -51,8 +51,17 @@ canvas {
     margin-left: auto;
     margin-right: auto;
     width: 80%;
-    height: 25%;
     background-color: rgb(170, 170, 170);
+}
+
+.function {
+    height: 20%;
+}
+.label {
+    height: 28%;
+}
+.point {
+    height: 24%;
 }
 
 .obj-header {
@@ -99,12 +108,12 @@ canvas {
     width: 100%;
 }
 
-.function {
-    margin-left: 0;
+.fx input {
+    width: 75%;
 }
 
-.function input {
-    width: 75%;
+.text input {
+    width: 75%
 }
 
 .reposition button {

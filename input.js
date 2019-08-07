@@ -76,6 +76,7 @@ if (havePointerLock) {
             document.removeEventListener("mousemove", mousemove, false);
             document.removeEventListener("wheel", onwheel, {passive: false});
             realtime.active = false;
+            realtime.takeInput = false;
         }
     }, false);
 }

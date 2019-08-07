@@ -12,45 +12,6 @@
         <div id="workspace">
             <h1 id="title">Graphie Realtime</h1>
             <div id="objs">
-                <div class="obj">
-                    <div class="obj-header">
-                        <ul>
-                            <li class="obj-title"><strong>Function</strong></li>
-                            <li class="obj-delete" onclick="workspace.remove(0);"><button>X</button></li>
-                        </ul>
-                    </div>
-                    <div class="obj-body">
-                        <ul>
-                            <li class="function">f(x) = <input id="function0" value="Math.sin(2*Math.PI*x)*0.8"></input></li>
-                            <li class="color">color = <select id="color0">
-                                <option value="BLUE_D">BLUE_D</option>
-                                <option value="MAROON_D">MAROON_D</option>
-                            </select></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="obj">
-                    <div class="obj-header">
-                        <ul>
-                            <li class="obj-title"><strong>Label</strong></li>
-                            <li class="obj-delete" onclick="workspace.remove(1);"><button>X</button></li>
-                        </ul>
-                    </div>
-                    <div class="obj-body">
-                        <ul>
-                            <li class="text">text = <input id="text1" value="x_0"></input></li>
-                            <li class="color">color = <select id="color1">
-                                <option value="BLUE_D">BLUE_D</option>
-                                <option value="MAROON_D">MAROON_D</option>
-                            </select></li>
-                            <li class="mathy">mathy = <select id="mathy1">
-                                <option value="yes">yes</option>
-                                <option value="no">no</option>
-                            </select></li>
-                            <li class="reposition" onclick="workspace.reposition(1);"><button>Reposition</button></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <div id="add-objs">
                 <ul>
@@ -59,6 +20,7 @@
                     <li id="add-select-li"><select id="type-select">
                         <option value="function">function</option>
                         <option value="label">label</option>
+                        <option value="point">point</option>
                     </select></li>
                 </ul>
                 <textarea style="display: none;" id="hidden-copier"></textarea>
@@ -72,9 +34,9 @@
         <script src="drawHelp.js"></script>
         <script src="input.js"></script>
 
-        <script src="label.js"></script>
-        <script src="points.js"></script>
         <script src="equation.js"></script>
+        <script src="label.js"></script>
+        <script src="point.js"></script>
         <script src="workspace.js"></script>
 
         <script src="realtime.js"></script>

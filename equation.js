@@ -1,12 +1,14 @@
 class Equation {
 
-    constructor(f = (x) => 0, color = "#987654") {
+    constructor(f = (x) => 0, color = "#11ACCD") {
         this.id = ID++;
         this.f = f;
         this.color = color;
-        this.points = new Points();
         this.steps = 400;
         this.invalid = false;
+    }
+
+    init() {
     }
 
     update() {
@@ -33,7 +35,7 @@ class Equation {
             x = i / this.steps * realtime.xRange + realtime.range[0][0]
             points.push([
                 i/this.steps * WIDTH - HALFWIDTH,
-                realtime.transformY(-this.f(x)) // f(x) accounts for how HTML5 canvas handles y-coordinates.
+                realtime.transformY(this.f(x))
             ]);
         }
         path(points, {
@@ -43,6 +45,9 @@ class Equation {
     }
 
     generateCode() {
+        if (this.invalid) {
+            return "/* Invalid Function */";
+        }
         return `style({
     stroke: "` + this.color + `",
     fill: "none",

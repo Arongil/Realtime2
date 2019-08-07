@@ -1,34 +1,38 @@
-class Label {
+class Point {
 
-    constructor(position = [0, 0], text = "", color = "#000000", latex = true) {
+    constructor(f, x = 0, color = "#000000") {
         this.id = ID++;
-        this.position = position;
-        this.text = text;
+        this.f = f;
+        this.x = x;
         this.color = color;
-        this.latex = latex;
         this.dragSpeed = 0.001;
+        this.invalid = false;
     }
 
     update() {
-        this.textElement = document.getElementById("text" + this.id);
+        this.fElement = document.getElementById("function" + this.id);
         this.colorElement = document.getElementById("color" + this.id);
-        this.latexElement = document.getElementById("mathy" + this.id);
-        this.text = this.textElement.value;
+        try {
+            eval("this.f = (x) => " + this.fElement.value + ";");
+            this.invalid = false;
+        } catch {
+            this.invalid = true;
+        }
         this.color = colors[this.colorElement.value];
-        this.latex = (this.latexElement.value === "yes" ? true : false);
     }
 
     plot() {
-        style({
-            fill: this.color
-        });
-        textSize(20);
-        text(this.text, realtime.transformX(this.position[0]), realtime.transformY(this.position[1]));
+        if (this.invalid) {
+            return;
+        }
+        var x = realtime.transformX(this.x),
+            y = realtime.transformY(this.f(this.x)),
+            radius = WIDTH/100;
+        ellipse(x, y, radius, radius, { fill: this.color, stroke: this.color });
     }
 
     drag() {
-        this.position[0] += Mouse.dx * this.dragSpeed * realtime.xRange;
-        this.position[1] -= Mouse.dy * this.dragSpeed * realtime.yRange;
+        this.x += Mouse.dx * this.dragSpeed * realtime.xRange;
     }
 
     init() {
@@ -62,7 +66,11 @@ class Label {
     }
 
     generateCode() {
-        return `label([` + this.position[0] + `, ` + this.position[1] + `], "` + this.text + `", "center", ` + (this.latex ? "true" : "false") + `, {
+        if (this.invalid) {
+            return "/* Invalid Point */";
+        }
+        return `drawPoint({
+    point: [` + this.x + `, ` + this.f(this.x) + `],
     color: "` + this.color + `"
 });`;
     }

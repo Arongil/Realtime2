@@ -8,18 +8,19 @@ class Realtime {
         this.scrollSpeed = 0.002;
         this.zoomSpeed = 0.01;
         this.active = false;
-        this.takeInput = true;
+        this.takeInput = false;
     }
 
     transformX(x) {
         return WIDTH*(x - this.center[0])/this.xRange;
     }
     transformY(y) {
-        return HEIGHT*(y + this.center[1])/this.yRange;
+        // Returning the negative accounts for how HTML5 canvas handles y-coordinates.
+        return -HEIGHT*(y - this.center[1])/this.yRange;
     }
     transform(point) {
         var x = point[0], y = point[1];
-        return [WIDTH*(point[0] - this.center[0])/this.xRange, HEIGHT*(point[1] + this.center[1])/this.yRange];
+        return [this.transformX(x), this.transformY(y)];
     }
 
     init() {
@@ -77,13 +78,13 @@ class Realtime {
         if (Keys.space) {
             this.range = [[-1, 1], [-1, 1]];
         }
-
-        this.center = [(this.range[0][0] + this.range[0][1])/2, (this.range[1][0] + this.range[1][1])/2];
-        this.xRange = this.range[0][1] - this.range[0][0];
-        this.yRange = this.range[1][1] - this.range[1][0];
     }
 
     update() {
+        this.center = [(this.range[0][0] + this.range[0][1])/2, (this.range[1][0] + this.range[1][1])/2];
+        this.xRange = this.range[0][1] - this.range[0][0];
+        this.yRange = this.range[1][1] - this.range[1][0];
+
         if (!this.active) {
             return;
         }
